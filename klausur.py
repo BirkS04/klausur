@@ -35,12 +35,6 @@ if "message_list" not in sess:
 if "images_list" not in sess:
     sess.images_list = []
 
-with open("verhalten.txt", "r", encoding="utf-8") as file:
-    verhalten = json.load(file)
-
-with open("PO.txt", "r", encoding="utf-8") as file:
-    PO = json.load(file)
-
 with open("verhalten2.txt", "r", encoding="utf-8") as file:
     verhalten2 = [{"role": "user", "content": f"{file.read()}"}]
 
