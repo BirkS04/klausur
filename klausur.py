@@ -66,7 +66,7 @@ E) Die Aussage W e n n Menschen in einem Arbeitsteam sehr unterschiedliche
 Persönlichkeitseigenschaften besitzen, dann kann ein solches Team Probleme besser lösen" ist prinzipiell empirisch überprüfbar.
 
 Antwort und Ausgabe:
-5: B
+5: B||
 ##Wichtig: Deine Ausgabe darf nur die Buchstaben der Lösung und die Nummer der Aufgabe enthalten. Schreibe nie mehr.
 """
 def invoke(query):
