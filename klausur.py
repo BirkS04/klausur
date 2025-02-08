@@ -17,10 +17,10 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 # Initialize the large language model (LLM).  Here, Google's Gemini is used.
-# llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
 # The following line is commented out, indicating that OpenAI's GPT model is an alternative that could be used instead.
 # llm = ChatOpenAI(model="o1-preview-2024-09-12")
-llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
+# llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
 
 #test
 # Access Streamlit's session state.  Session state allows data to persist across multiple runs of the app.
