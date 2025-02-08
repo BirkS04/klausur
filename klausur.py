@@ -17,10 +17,10 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 # Initialize the large language model (LLM).  Here, Google's Gemini is used.
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
+# llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
 # The following line is commented out, indicating that OpenAI's GPT model is an alternative that could be used instead.
 # llm = ChatOpenAI(model="o1-preview-2024-09-12")
-# llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
+llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
 
 #test
 # Access Streamlit's session state.  Session state allows data to persist across multiple runs of the app.
@@ -45,18 +45,7 @@ with open("PO2.txt", "r", encoding="utf-8") as file:
 
 passwort = st.secrets["passwort"]
 
-
-option = st.radio(
-    label="Whäle eine Option",
-    options=("verhalten", "PO")
-)
-if option == "verhalten":
-    sess.message_list = verhalten2
-else:
-    sess.message_list = PO2
-#st.write(sess.message_list[0])
-
-system_prompt = """Du bist ein Professor im Fach Verhaltenwissenschafliche Grundlagen, Organisationslehre und Personalwirtschaft. Im Folgenden wirst du die Vorlesungsunterlagen dieses Semesters erhalten. Lies diese gründlich durch. Danach wirst Du Fotos von Multiple Choice Aufgaben erhalten, bei denen jeweils nur eine Anwortmöglichkeit zu wählen ist. ##Ziel: Dein Ziel ist es die Multiple Choice Aufgabe zu beantworten. Gehe dabei Schritt für Schritt die Antwortmöglichkeiten durch und gib schließlich eine Antwort. Prüfe deine Antwort auf Korrektheit. ##Beispiele und Ausgabeformat : 
+system_message1 = """Du bist ein Professor im Fach Verhaltenwissenschafliche Grundlagen, Organisationslehre und Personalwirtschaft. Im Folgenden wirst du die Vorlesungsunterlagen dieses Semesters erhalten. Lies diese gründlich durch. Danach wirst Du Fotos von Multiple Choice Aufgaben erhalten, bei denen jeweils nur eine Anwortmöglichkeit zu wählen ist. ##Ziel: Dein Ziel ist es die Multiple Choice Aufgabe zu beantworten. Gehe dabei Schritt für Schritt die Antwortmöglichkeiten durch und gib schließlich eine Antwort. Prüfe deine Antwort auf Korrektheit. ##Beispiele und Ausgabeformat : 
 Aufgabe:
 5. Welche Aussage zu empirischen Wissenschaften trifft nicht vollständig zu? Entscheiden Sie sich für eine Aussage (1 aus 5)!
 A) Es sollen möglichst allgemeingültige Aussagen über den Forschungsgegenstand getroffen werden, um Phänomene oder deren Bedingungen zu erklären, vorherzusagen oder zu modifizieren.
@@ -70,6 +59,41 @@ Antwort und Ausgabe:
 5: B||
 ##Wichtig: Deine Ausgabe darf nur die Buchstaben der Lösung und die Nummer der Aufgabe enthalten. Schreibe nie mehr.
 """
+system_message2 = """Du bist ein Professor im Fach Verhaltenwissenschafliche Grundlagen, Organisationslehre und Personalwirtschaft. Im Folgenden wirst du die Vorlesungsunterlagen dieses Semesters erhalten. Lies diese gründlich durch. Danach wirst Du Fotos von Multiple Choice Aufgaben erhalten, bei denen jeweils nur eine Anwortmöglichkeit zu wählen ist. ##Ziel: Dein Ziel ist es die Multiple Choice Aufgabe zu beantworten. Gehe dabei Schritt für Schritt die Antwortmöglichkeiten durch und gib schließlich eine Antwort. Prüfe deine Antwort auf Korrektheit. ##Beispiele und Ausgabeformat : 
+Aufgabe:
+5. Welche Aussage zu empirischen Wissenschaften trifft nicht vollständig zu? Entscheiden Sie sich für eine Aussage (1 aus 5)!
+A) Es sollen möglichst allgemeingültige Aussagen über den Forschungsgegenstand getroffen werden, um Phänomene oder deren Bedingungen zu erklären, vorherzusagen oder zu modifizieren.
+B) Hypothesen geben Auskunft über reale Zusammenhänge von mindestens zwei Variablen.
+C) Aussagen haben dann einen empirischen Gehalt, wenn sich deren dazugehörigen Phänomene anhand von Erfahrung überprüfen lassen.
+D) Die Wissenschaftstheorie befasst sich mit einer Vielzahl von Fragen, diedem Schema empirischer Wissenschaften zugrunde liegen.
+E) Die Aussage W e n n Menschen in einem Arbeitsteam sehr unterschiedliche
+Persönlichkeitseigenschaften besitzen, dann kann ein solches Team Probleme besser lösen" ist prinzipiell empirisch überprüfbar.
+
+Antwort und Ausgabe:
+5: B||
+##Wichtig: Deine Ausgabe darf nur die Buchstaben der Lösung und die Nummer der Aufgabe enthalten. Schreibe nie mehr.
+"""
+
+option = st.radio(
+    label="Whäle eine Option",
+    options=("verhalten", "PO")
+)
+if option == "verhalten":
+    sess.message_list = verhalten2
+else:
+    sess.message_list = PO2
+
+mode = st.radio(
+    label="Whäle eine Option",
+    options=("MC", "TEXT")
+)
+if option == "MC":
+    system_prompt = system_message1
+else:
+    system_prompt = system_message2
+#st.write(sess.message_list[0])
+
+
 def invoke(query):
     message_list = sess.message_list
     message_list.insert(0, system_prompt)
