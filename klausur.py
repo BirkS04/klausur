@@ -2,7 +2,7 @@ import streamlit as st
 import os
 #from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
-#from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 import base64
 import json
@@ -13,13 +13,13 @@ import mimetypes
 #load_dotenv()
 # Set environment variables for Google and OpenAI API keys.  These are retrieved from the .env file.
 #os.environ["GOOGLE_API_KEY"] = os.environ.get("GOOGLE_API_KEY")
-#os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 
 # Initialize the large language model (LLM).  Here, Google's Gemini is used.
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
+# llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
 # The following line is commented out, indicating that OpenAI's GPT model is an alternative that could be used instead.
-# llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-o1")
 
 # Access Streamlit's session state.  Session state allows data to persist across multiple runs of the app.
 sess = st.session_state
