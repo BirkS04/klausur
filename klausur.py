@@ -20,7 +20,9 @@ os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 # llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
 # The following line is commented out, indicating that OpenAI's GPT model is an alternative that could be used instead.
 # llm = ChatOpenAI(model="o1-preview-2024-09-12")
-llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
+# llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
+llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
+
 
 #test
 # Access Streamlit's session state.  Session state allows data to persist across multiple runs of the app.
@@ -79,7 +81,8 @@ option = st.radio(
     options=("verhalten", "PO")
 )
 if option == "verhalten":
-    sess.message_list = verhalten2
+    # sess.message_list = verhalten2
+    None
 else:
     sess.message_list = PO2
 
