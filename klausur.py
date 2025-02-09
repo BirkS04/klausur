@@ -78,7 +78,7 @@ mode = st.radio(
     label="Whäle eine Option",
     options=("MC", "TEXT")
 )
-if option == "MC":
+if mode == "MC":
     system_prompt = system_message1
 else:
     system_prompt = system_message2
