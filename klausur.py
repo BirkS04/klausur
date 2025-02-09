@@ -49,7 +49,7 @@ if "message_list" not in sess:
 if "images_list" not in sess:
     sess.images_list = []
 
-with open("verhalten2.txt", "r", encoding="utf-8") as file:
+with open("verhalten3.txt", "r", encoding="utf-8") as file:
     verhalten2 = [{"role": "user", "content": f"{file.read()}"}]
 
 with open("PO3.txt", "r", encoding="utf-8") as file:
