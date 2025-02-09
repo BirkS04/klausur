@@ -213,6 +213,7 @@ else:
                             # st.write(llm.invoke([image_json,{"role": "user", "content":"was ist zu sehen auf dem bild ?"} ]))
                             # st.write(image_json)
                             sess.images_list.append(image_json)
+                            st.success("Bild erfolgreich hochgeladen.")
 
                         else:
                             st.error("Fehler beim Konvertieren des Bildes.")
