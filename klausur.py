@@ -84,8 +84,6 @@ else:
     system_prompt = system_message2
 #st.write(sess.message_list[0])
 
-st.write(system_prompt)
-st.write(option)
 
 def invoke(query):
     message_list = sess.message_list
