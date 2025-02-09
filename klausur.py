@@ -61,7 +61,7 @@ Antwort und Ausgabe:
 5: B||
 ##Wichtig: Deine Ausgabe darf nur die Buchstaben der Lösung und die Nummer der Aufgabe enthalten. Schreibe nie mehr.
 """
-system_message2 = """Du bist ein Professor im Fach Verhaltenwissenschafliche Grundlagen, Organisationslehre und Personalwirtschaft. Im Folgenden wirst du die Vorlesungsunterlagen dieses Semesters erhalten. Lies diese gründlich durch. Danach wirst Aufgaben erhalten. ##Ziel: Dein Ziel ist es die Aufgaben knapp zu beantworten. Gehe dabei Schritt für Schritt durch und gib schließlich eine Antwort. Prüfe deine Antwort auf Korrektheit.
+system_message2 = """Du bist ein Professor im Fach Verhaltenwissenschafliche Grundlagen, Organisationslehre und Personalwirtschaft. Im Folgenden wirst du die Vorlesungsunterlagen dieses Semesters erhalten. Lies diese gründlich durch. Danach wirst Aufgaben erhalten. ##Ziel: Dein Ziel ist es die Aufgaben so knapp wie möglich zu beantworten. Gehe dabei Schritt für Schritt durch und gib schließlich eine Antwort. Prüfe deine Antwort auf Korrektheit.
 """
 
 option = st.radio(
