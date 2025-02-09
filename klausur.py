@@ -20,7 +20,7 @@ os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
 llm2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp")
 # The following line is commented out, indicating that OpenAI's GPT model is an alternative that could be used instead.
 # llm = ChatOpenAI(model="o1-preview-2024-09-12")
-# llm = ChatAnthropic(model="claude-3-5-haiku-20241022")
+llm3 = ChatAnthropic(model="claude-3-5-haiku-20241022")
 llm1 = ChatAnthropic(model="claude-3-5-sonnet-latest")
 
 model = st.radio(
@@ -30,7 +30,7 @@ model = st.radio(
 if model == "gemini":
     llm = llm2
 else:
-    llm = llm1
+    llm = llm3
 
 
 
@@ -52,7 +52,7 @@ if "images_list" not in sess:
 with open("verhalten2.txt", "r", encoding="utf-8") as file:
     verhalten2 = [{"role": "user", "content": f"{file.read()}"}]
 
-with open("PO2.txt", "r", encoding="utf-8") as file:
+with open("PO3.txt", "r", encoding="utf-8") as file:
     PO2 = [{"role": "user", "content": f"{file.read()}"}]
 
 passwort = st.secrets["passwort"]
