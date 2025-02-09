@@ -30,7 +30,7 @@ model = st.radio(
 if model == "gemini":
     llm = llm2
 else:
-    llm = llm1
+    llm = llm2
 
 
 
